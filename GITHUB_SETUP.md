@@ -4,7 +4,7 @@ Complete guide to creating and publishing your Jukeyman Autonomous Media Station
 
 ## 📋 Prerequisites
 
-- GitHub account (username: `rickjefferson`)
+- GitHub account (username: `rjbizsolution23-wq`)
 - GitHub Personal Access Token (already provided)
 - Git installed on your system
 - Terminal/command line access
@@ -100,17 +100,17 @@ curl -X POST \
 
 ```bash
 # Add remote origin
-git remote add origin https://github.com/rickjefferson/jams.git
+git remote add origin https://github.com/rjbizsolution23-wq/jams.git
 
 # Or using SSH (if you have SSH keys set up)
-# git remote add origin git@github.com:rickjefferson/jams.git
+# git remote add origin git@github.com:rjbizsolution23-wq/jams.git
 
 # Push to GitHub
 git push -u origin main
 ```
 
 If prompted for credentials:
-- Username: `rickjefferson`
+- Username: `rjbizsolution23-wq`
 - Password: Use your GitHub Personal Access Token (not your GitHub password)
 
 ## 📝 Repository Configuration
@@ -162,7 +162,7 @@ Go to repository Settings → Topics and add:
 5. Click **Save**
 
 Your site will be available at:
-`https://rickjefferson.github.io/jams/`
+`https://rjbizsolution23-wq.github.io/jams/`
 
 ### Create GitHub Pages Site
 
@@ -195,7 +195,7 @@ See [README.md](README.md) for installation instructions.
 
 ## Documentation
 
-- [Full Documentation](https://rickjefferson.github.io/jams/)
+- [Full Documentation](https://rjbizsolution23-wq.github.io/jams/)
 - [API Reference](http://localhost:8000/docs)
 - [Cloudflare Setup Guide](docs/CLOUDFLARE_SETUP.md)
 
@@ -240,7 +240,7 @@ After pushing, your repository will show:
 
 Built by @rickjefferson
 
-🔗 https://github.com/rickjefferson/jams
+🔗 https://github.com/rjbizsolution23-wq/jams
 ```
 
 **LinkedIn:**
@@ -256,7 +256,7 @@ Key features:
 
 Built by RJ Business Solutions.
 
-Check it out: https://github.com/rickjefferson/jams
+Check it out: https://github.com/rjbizsolution23-wq/jams
 ```
 
 ## 📈 Promote Your Repository
@@ -334,9 +334,9 @@ If you need help with GitHub setup:
 
 ---
 
-**Repository URL:** https://github.com/rickjefferson/jams
+**Repository URL:** https://github.com/rjbizsolution23-wq/jams
 
-**GitHub Pages:** https://rickjefferson.github.io/jams/
+**GitHub Pages:** https://rjbizsolution23-wq.github.io/jams/
 
 ---
 

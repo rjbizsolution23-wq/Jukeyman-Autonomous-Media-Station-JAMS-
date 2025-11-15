@@ -243,9 +243,11 @@ def main():
     print("======================================")
     
     # Verify token
-    if not GITHUB_TOKEN or GITHUB_TOKEN == "your_github_token_here":
+    if not GITHUB_TOKEN:
         print_error("GitHub token not set!")
-        print("Set GITHUB_TOKEN environment variable or update the script")
+        print("Set GITHUB_TOKEN environment variable:")
+        print("  export GITHUB_TOKEN=your_github_personal_access_token")
+        print("  python scripts/configure_github_repo.py")
         sys.exit(1)
     
     results = {

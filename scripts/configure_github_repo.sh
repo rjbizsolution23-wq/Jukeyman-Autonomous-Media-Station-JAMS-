@@ -4,7 +4,15 @@
 
 set -e
 
-GITHUB_TOKEN="${1:-${GITHUB_TOKEN:-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}}"
+GITHUB_TOKEN="${1:-${GITHUB_TOKEN:-}}"
+
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "❌ Error: GitHub token not set!"
+    echo "Usage: $0 [GITHUB_TOKEN]"
+    echo "   Or set GITHUB_TOKEN environment variable:"
+    echo "   export GITHUB_TOKEN=your_github_personal_access_token"
+    exit 1
+fi
 REPO_OWNER="rjbizsolution23-wq"
 REPO_NAME="jams"
 API_BASE="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}"
