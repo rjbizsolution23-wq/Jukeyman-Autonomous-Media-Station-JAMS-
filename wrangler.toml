@@ -1,0 +1,56 @@
+# ==========================================
+# Jukeyman AGI Music Studio (JAMS) - Cloudflare Workers Config
+# ==========================================
+
+name = "jams-api"
+main = "workers/index.js"
+compatibility_date = "2024-01-01"
+account_id = "58250b56ae5b45d940cd6e4b64314c01"
+
+# R2 Storage binding
+[[r2_buckets]]
+binding = "MUSIC_STORAGE"
+bucket_name = "music-empire-audio"
+preview_bucket_name = "music-empire-audio"
+
+# KV for caching (optional but recommended)
+[[kv_namespaces]]
+binding = "CACHE"
+id = "9e1cb9202d884c32a9fa653cbd45e63c"
+
+# Environment variables (non-sensitive)
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "v1"
+MAX_AGENTS = "110"
+DEFAULT_MODEL = "deepseek/deepseek-chat"
+
+# Routes - map to your domain
+routes = [
+  { pattern = "api.rjbizsolution.com/*", zone_name = "rjbizsolution.com" },
+  { pattern = "music-api.rjbizsolution.com/*", zone_name = "rjbizsolution.com" }
+]
+
+# Custom domain
+workers_dev = true
+
+# Secrets (set via: wrangler secret put SECRET_NAME)
+# - OPENROUTER_API_KEY
+# - R2_ACCESS_KEY_ID
+# - R2_SECRET_ACCESS_KEY
+
+[build]
+command = "echo 'Worker built'"
+
+# Resource limits
+[limits]
+cpu_ms = 50000  # 50 seconds max execution
+
+# Development settings
+[env.development]
+vars = { ENVIRONMENT = "development" }
+
+# Production settings  
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
