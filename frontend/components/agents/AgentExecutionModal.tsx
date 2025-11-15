@@ -128,28 +128,113 @@ export function AgentExecutionModal({
 
             <div>
               <label className="text-sm font-medium text-gray-300 mb-2 block">
-                AI Model
+                AI Model ({models?.length || 0} models available)
               </label>
               <Select value={selectedModel} onValueChange={setSelectedModel} disabled={runAgent.isPending}>
                 <SelectTrigger>
-                  <SelectValue />
+                  <SelectValue placeholder="Select a model..." />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="deepseek/deepseek-chat">
-                    ⭐ DeepSeek Chat - RECOMMENDED ($0.14/M)
-                  </SelectItem>
-                  <SelectItem value="deepseek/deepseek-r1">
-                    DeepSeek R1 - Advanced Reasoning ($0.14/M)
-                  </SelectItem>
-                  <SelectItem value="google/gemini-flash-1.5-8b">
-                    Gemini Flash 1.5 - Fast ($0.08/M)
-                  </SelectItem>
-                  <SelectItem value="google/gemini-2.0-flash-exp:free">
-                    Gemini 2.0 (Free - May be rate limited)
-                  </SelectItem>
-                  <SelectItem value="anthropic/claude-3.5-sonnet">
-                    Claude 3.5 Sonnet - Premium ($3/M)
-                  </SelectItem>
+                <SelectContent className="max-h-[400px]">
+                  {models && models.length > 0 ? (
+                    <>
+                      {/* Free Models */}
+                      {models.filter((m: any) => m.cost === 0).length > 0 && (
+                        <>
+                          <div className="px-2 py-1.5 text-xs font-semibold text-green-400 uppercase">
+                            🆓 Free Models
+                          </div>
+                          {models
+                            .filter((m: any) => m.cost === 0)
+                            .map((model: any) => (
+                              <SelectItem key={model.id} value={model.id}>
+                                <div className="flex items-center gap-2">
+                                  <span>{model.name}</span>
+                                  <Badge variant="success" className="text-xs">FREE</Badge>
+                                  {model.provider && (
+                                    <Badge variant="outline" className="text-xs">{model.provider}</Badge>
+                                  )}
+                                </div>
+                              </SelectItem>
+                            ))}
+                        </>
+                      )}
+                      
+                      {/* OpenRouter Models */}
+                      {models.filter((m: any) => m.provider === 'openrouter' && m.cost > 0).length > 0 && (
+                        <>
+                          <div className="px-2 py-1.5 text-xs font-semibold text-blue-400 uppercase mt-2">
+                            🔵 OpenRouter Models
+                          </div>
+                          {models
+                            .filter((m: any) => m.provider === 'openrouter' && m.cost > 0)
+                            .slice(0, 10)
+                            .map((model: any) => (
+                              <SelectItem key={model.id} value={model.id}>
+                                <div className="flex items-center gap-2">
+                                  <span>{model.name}</span>
+                                  <Badge variant="outline" className="text-xs">
+                                    ${(model.cost * 1000000).toFixed(2)}/M
+                                  </Badge>
+                                </div>
+                              </SelectItem>
+                            ))}
+                        </>
+                      )}
+                      
+                      {/* MiniMax Models */}
+                      {models.filter((m: any) => m.provider === 'minimax').length > 0 && (
+                        <>
+                          <div className="px-2 py-1.5 text-xs font-semibold text-purple-400 uppercase mt-2">
+                            🎵 MiniMax Models (Music & Audio)
+                          </div>
+                          {models
+                            .filter((m: any) => m.provider === 'minimax')
+                            .map((model: any) => (
+                              <SelectItem key={model.id} value={model.id}>
+                                <div className="flex items-center gap-2">
+                                  <span>{model.name}</span>
+                                  {model.type && (
+                                    <Badge variant="outline" className="text-xs">{model.type}</Badge>
+                                  )}
+                                  {model.cost > 0 && (
+                                    <Badge variant="outline" className="text-xs">
+                                      ${(model.cost * 1000000).toFixed(2)}/M
+                                    </Badge>
+                                  )}
+                                </div>
+                              </SelectItem>
+                            ))}
+                        </>
+                      )}
+                      
+                      {/* Chutes Models */}
+                      {models.filter((m: any) => m.provider === 'chutes').length > 0 && (
+                        <>
+                          <div className="px-2 py-1.5 text-xs font-semibold text-yellow-400 uppercase mt-2">
+                            ⚡ Chutes Models
+                          </div>
+                          {models
+                            .filter((m: any) => m.provider === 'chutes')
+                            .map((model: any) => (
+                              <SelectItem key={model.id} value={model.id}>
+                                <div className="flex items-center gap-2">
+                                  <span>{model.name}</span>
+                                  {model.cost > 0 && (
+                                    <Badge variant="outline" className="text-xs">
+                                      ${(model.cost * 1000000).toFixed(2)}/M
+                                    </Badge>
+                                  )}
+                                </div>
+                              </SelectItem>
+                            ))}
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <SelectItem value="deepseek/deepseek-chat">
+                      DeepSeek Chat (Default)
+                    </SelectItem>
+                  )}
                 </SelectContent>
               </Select>
             </div>
